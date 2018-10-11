@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_audit_class"
+        android:icon="@drawable/audit_class"
+        android:title="这门课我要了！" />
+</menu>

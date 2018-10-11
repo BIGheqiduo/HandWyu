@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#333333">
+
+    <TextView
+        android:id="@+id/main_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="掌上邑大"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/main_title_jiantou"
+        android:background="@drawable/title_jiantou1"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@+id/main_title_text"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:id="@+id/main_title_menu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/menu"/>
+
+</RelativeLayout>

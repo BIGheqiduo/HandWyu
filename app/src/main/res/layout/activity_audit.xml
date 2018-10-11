@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.imstuding.www.handwyu.AuditClass.AuditActivity">
+
+    <com.imstuding.www.handwyu.ToolUtil.TitleView
+        android:id="@+id/title_audit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.imstuding.www.handwyu.ToolUtil.TitleView>
+
+    <ListView
+        android:layout_weight="1"
+        android:id="@+id/audit_class"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+    <LinearLayout
+        android:gravity="bottom"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/audit_up_page"
+            android:text="上一页"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/audit_search"
+            android:text="高级查询"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/audit_down_page"
+            android:text="下一页"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

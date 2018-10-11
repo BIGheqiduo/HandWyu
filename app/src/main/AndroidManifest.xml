@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.imstuding.www.handwyu">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".OtherUi.SplashActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".WebViewDlg.LoginActivity" />
+        <activity android:name=".AddCourse.AddCourseActivity" />
+        <activity android:name=".Dictionaty.DictionaryActivity" />
+        <activity android:name=".OtherUi.OtherActivity" />
+        <activity android:name=".MainUi.MainActivity" />
+        <activity android:name=".WebViewDlg.WebViewActivity" />
+        <activity android:name=".SchoolCard.SchoolCardActivity" />
+        <activity android:name=".MainUi.SocreActivity" />
+        <activity android:name=".AuditClass.AuditActivity" />
+
+        <receiver
+            android:name=".WidgetSmall.MyCourseWidgetSmall"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_course_widget_small_info" />
+        </receiver>
+
+        <service
+            android:name=".WidgetSmall.MyRemoteViewsServiceSmall"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service
+            android:name=".WidgetSmall.MyServiceSmall"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".WidgetBig.MyCourseWidgetBig"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_course_widget_big_info" />
+        </receiver>
+
+        <service
+            android:name=".WidgetBig.MyRemoteViewsServiceBig"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service
+            android:name=".WidgetBig.MyServiceBig"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".WebViewDlg.SayLoveWallActivity"></activity>
+    </application>
+
+</manifest>

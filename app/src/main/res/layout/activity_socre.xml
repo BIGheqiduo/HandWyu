@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EBEBEB"
+    tools:context="com.imstuding.www.handwyu.MainUi.SocreActivity">
+    <com.imstuding.www.handwyu.ToolUtil.TitleView
+        android:id="@+id/title_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.imstuding.www.handwyu.ToolUtil.TitleView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:textSize="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/shape_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="起始"
+            android:textColor="#000000"/>
+
+        <Spinner
+            android:textSize="10dp"
+            android:layout_weight="1"
+            android:id="@+id/begin_spinner_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_score"
+            android:gravity="center">
+        </Spinner>
+
+        <TextView
+            android:textSize="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/shape_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="结束"
+            android:textColor="#000000"/>
+
+        <Spinner
+            android:textSize="10dp"
+            android:layout_weight="1"
+            android:id="@+id/end_spinner_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_score"
+            android:gravity="center">
+        </Spinner>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:text="课程名称"
+            android:layout_weight="0.6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:text="学分"
+            android:layout_weight="1.6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:text="成绩"
+            android:layout_weight="1.6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="15dp"
+            android:text="类别"
+            android:layout_weight="1.6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/shape_score"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <ListView
+            android:id="@+id/act_score_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"></ListView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:textSize="10dp"
+            android:text="全选"
+            android:id="@+id/act_btn_select_all"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_score"
+            android:layout_width="60dp"
+            android:layout_height="35dp" />
+
+        <Button
+            android:textSize="10dp"
+            android:id="@+id/act_calculate_score"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_score"
+            android:text="计算绩点" />
+
+        <TextView
+            android:textSize="10dp"
+            android:id="@+id/act_show_scorepoint"
+            android:layout_width="110dp"
+            android:layout_height="35dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_score"
+            android:singleLine="true"
+            android:text="绩点:0" />
+
+        <Button
+            android:id="@+id/act_btn_score"
+            android:textSize="10dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@drawable/shape_score"
+            android:text="查成绩"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_width="60dp"
+            android:layout_height="35dp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/web_menu_update"
+        android:icon="@drawable/web_refresh"
+        android:title="刷新界面" />
+    <item
+        android:id="@+id/web_menu_qq"
+        android:icon="@drawable/love_qq"
+        android:title="发送给QQ好友" />
+    <item
+        android:id="@+id/web_menu_wechat"
+        android:icon="@drawable/love_wechat"
+        android:title="发送给微信好友" />
+    <item
+        android:id="@+id/web_menu_copy"
+        android:icon="@drawable/web_copy"
+        android:title="复制链接" />
+</menu>

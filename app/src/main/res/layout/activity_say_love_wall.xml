@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#EBEBEB"
+    android:id="@+id/saylove_srl"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <com.imstuding.www.handwyu.ToolUtil.TitleView
+        android:id="@+id/title_lovewebview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.imstuding.www.handwyu.ToolUtil.TitleView>
+
+
+
+        <ProgressBar
+            android:id="@+id/love_progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dip"
+            android:progressDrawable="@drawable/pg"
+            android:visibility="gone"
+            />
+
+        <WebView
+            android:layout_weight="1"
+            android:id="@+id/love_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
+
+    </LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

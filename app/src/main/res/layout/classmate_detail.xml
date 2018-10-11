@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/classmate_detail_name"
+            android:textColor="#000000"
+            android:textSize="10pt"
+            android:gravity="left"
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#EBEBEB">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/class_num"
+            android:gravity="left|center"
+            android:text="学号:"
+            android:textSize="7pt" />
+
+        <TextView
+            android:id="@+id/classmate_detail_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#EBEBEB">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/classname"
+            android:gravity="left|center"
+            android:text="班级:"
+            android:textSize="7pt" />
+
+        <TextView
+            android:id="@+id/classmate_detail_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#EBEBEB">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/college"
+            android:gravity="left|center"
+            android:text="学院:"
+            android:textSize="7pt" />
+
+        <TextView
+            android:id="@+id/classmate_detail_college"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#EBEBEB">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:drawableLeft="@drawable/prof"
+            android:gravity="left|center"
+            android:text="专业:"
+            android:textSize="7pt" />
+
+        <TextView
+            android:id="@+id/classmate_detail_prof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#000000" />
+    </LinearLayout>
+</LinearLayout>

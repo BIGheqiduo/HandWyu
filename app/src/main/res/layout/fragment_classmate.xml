@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="0dp"
+        android:layout_gravity="center"
+        android:background="@drawable/wyu_s"
+        android:layout_width="128dp"
+        android:layout_height="128dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <AutoCompleteTextView
+            android:layout_toLeftOf="@+id/imageView"
+            android:hint="输入学号：如3115008888"
+            android:id="@+id/classmate_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <ImageView
+            android:layout_toLeftOf="@+id/classmate_search"
+            android:id="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/widget_middle_pressed" />
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/classmate_search"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_style" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:id="@+id/class_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/classmate_id"
+                android:layout_weight="1"
+                android:text="学号查询"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:id="@+id/classmate_name"
+                android:layout_weight="1"
+                android:text="姓名查询"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_marginTop="10dp"
+        android:id="@+id/list_classmate_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>
