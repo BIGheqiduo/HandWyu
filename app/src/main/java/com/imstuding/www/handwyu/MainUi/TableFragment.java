@@ -9,10 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.view.menu.MenuPopupHelper;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import android.widget.ImageView;
 import android.support.v7.widget.PopupMenu;
 
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -38,6 +41,8 @@ import com.imstuding.www.handwyu.ToolUtil.MainTitle;
 import com.imstuding.www.handwyu.ToolUtil.WeekTitle;
 import com.imstuding.www.handwyu.WebViewDlg.LoginActivity;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -74,20 +79,83 @@ public class TableFragment extends Fragment {
     public static int static_zc;
     private LinearLayout layout_zc=null;
     private boolean zc_flag=MainActivity.getArrow();
+    private GestureDetector mGestureDetector;
+    private int verticalMinDistance = 20;
+    private int minVelocity         = 0;
+    private int slid_zc=0;
+    private MyTouchListener myTouchListener;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_table,container,false);
         initFragment();
-
+        mGestureDetector = new GestureDetector((GestureDetector.OnGestureListener) myTouchListener);
         if (zc_flag){
             setArrowShow(layout_zc);
         }else {
             setArrowHide(layout_zc);
         }
 
+        weekTitle.setOnTouchListener(myTouchListener);
+        weekTitle.setLongClickable(true);
         return view;
     }
+
+
+    class MyTouchListener implements View.OnTouchListener, GestureDetector.OnGestureListener{
+
+        public boolean onTouch(View v, MotionEvent event) {
+            return mGestureDetector.onTouchEvent(event);
+        }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            return false;
+        }
+
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public void onShowPress(MotionEvent e) {
+
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            return false;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+
+        }
+
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+            if (e1.getX() - e2.getX() > verticalMinDistance && Math.abs(velocityX) > minVelocity) {
+
+                int t=++slid_zc;
+                titleView.setTitleText("第"+t+"周");
+                setWeekTitleDate((t)+"");
+                setTableCourse((t)+"");
+            } else if (e2.getX() - e1.getX() > verticalMinDistance && Math.abs(velocityX) > minVelocity) {
+
+                int t=--slid_zc;
+                titleView.setTitleText("第"+t+"周");
+                setWeekTitleDate((t)+"");
+                setTableCourse((t)+"");
+            }
+
+            return false;
+        }
+    }
+
+
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -197,6 +265,8 @@ public class TableFragment extends Fragment {
 
     private void initFragment(){
         myPopMenu();//设置popmenu
+        myTouchListener=new MyTouchListener();
+        slid_zc=m_zc;
 
         titleView = (MainTitle)view.findViewById(R.id.title_table);
         imageView_menu= (ImageView) view.findViewById(R.id.main_title_menu);
