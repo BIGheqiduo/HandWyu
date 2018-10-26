@@ -6,5 +6,5 @@
     android:minWidth="350dp"
     android:previewImage="@drawable/course_widget_big"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="3600000"
+    android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen"></appwidget-provider>

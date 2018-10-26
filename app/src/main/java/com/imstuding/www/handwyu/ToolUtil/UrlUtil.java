@@ -22,6 +22,7 @@ public class UrlUtil {
 
     private Context mcontext;
     private SharedPreferences sharedPreferences;
+
     //操作
     public static final String operateUrl="http://www.imstuding.com/notice/operate.html";
     //通知

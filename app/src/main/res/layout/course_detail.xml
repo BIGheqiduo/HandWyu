@@ -28,7 +28,7 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/map"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text="教室:"
             android:textSize="7pt" />
 
@@ -36,7 +36,7 @@
             android:id="@+id/course_jxcdmc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text=""
             android:textColor="#000000" />
     </LinearLayout>
@@ -49,14 +49,14 @@
         <TextView
             android:drawableLeft="@drawable/text"
             android:textSize="7pt"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text="节数:"
             android:layout_width="60dp"
             android:layout_height="match_parent" />
         <TextView
             android:id="@+id/course_jcdm"
             android:textColor="#000000"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -70,14 +70,14 @@
         <TextView
             android:drawableLeft="@drawable/remind"
             android:textSize="7pt"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text="周次:"
             android:layout_width="60dp"
             android:layout_height="match_parent" />
         <TextView
             android:id="@+id/course_zc"
             android:textColor="#000000"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -91,14 +91,14 @@
         <TextView
             android:drawableLeft="@drawable/account"
             android:textSize="7pt"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text="老师:"
             android:layout_width="60dp"
             android:layout_height="match_parent" />
         <TextView
             android:id="@+id/course_teaxms"
             android:textColor="#000000"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -114,7 +114,7 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/classname"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text="班级:"
             android:textSize="7pt" />
 
@@ -122,7 +122,7 @@
             android:id="@+id/course_jxbmc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text=""
             android:textColor="#000000" />
     </LinearLayout>
@@ -145,7 +145,7 @@
             android:id="@+id/course_sknrjj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
+            android:gravity="left|center"
             android:text=""
             android:textColor="#000000" />
     </LinearLayout>

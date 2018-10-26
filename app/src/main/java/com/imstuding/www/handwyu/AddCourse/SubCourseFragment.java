@@ -2,6 +2,7 @@ package com.imstuding.www.handwyu.AddCourse;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -15,10 +16,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import com.imstuding.www.handwyu.R;
 import com.imstuding.www.handwyu.ToolUtil.DatabaseHelper;
+import com.imstuding.www.handwyu.WidgetBig.MyCourseWidgetBig;
+import com.imstuding.www.handwyu.WidgetSmall.MyCourseWidgetSmall;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.imstuding.www.handwyu.ToolUtil.DatabaseHelper.db_version;
+import static com.imstuding.www.handwyu.WidgetSmall.MyCourseWidgetSmall.WIDGET_UPDATE;
 
 
 /**
@@ -74,7 +79,11 @@ public class SubCourseFragment extends Fragment {
                     try {
                         delCourse();
                         Toast.makeText(mcontext,"删除成功啦！",Toast.LENGTH_LONG).show();
+
+                        //发送广播更新widget
+                        SendWidgetRefresh.widgetRefresh(mcontext);
                         getActivity().onBackPressed();
+
                     }catch (Exception e){
                         Toast.makeText(mcontext,"删除失败，去反馈！",Toast.LENGTH_LONG).show();
                     }

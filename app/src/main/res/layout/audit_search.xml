@@ -95,14 +95,15 @@
             android:text="上课时间："
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
+
         <EditText
-            android:hint="如：0102 代表第一大节"
             android:id="@+id/audit_edit_js"
-            android:singleLine="true"
-            android:background="@drawable/shape_edit"
-            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/shape_edit"
+            android:hint="如：0102 代表第一大节"
+            android:singleLine="true" />
 
     </LinearLayout>
 

@@ -22,6 +22,8 @@ import com.imstuding.www.handwyu.ToolUtil.MyHttpHelp;
 import com.imstuding.www.handwyu.ToolUtil.TitleView;
 import com.imstuding.www.handwyu.ToolUtil.UrlUtil;
 import com.imstuding.www.handwyu.WebViewDlg.LoginActivity;
+import com.imstuding.www.handwyu.WidgetBig.MyCourseWidgetBig;
+import com.imstuding.www.handwyu.WidgetSmall.MyCourseWidgetSmall;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -45,6 +47,7 @@ import java.util.zip.GZIPInputStream;
 
 import static com.imstuding.www.handwyu.MainUi.TableFragment.getWeekOfDate;
 import static com.imstuding.www.handwyu.ToolUtil.DatabaseHelper.db_version;
+import static com.imstuding.www.handwyu.WidgetSmall.MyCourseWidgetSmall.WIDGET_UPDATE;
 
 public class AddCourseActivity extends AppCompatActivity {
 
@@ -311,6 +314,9 @@ public class AddCourseActivity extends AppCompatActivity {
         String rq=sdf.format(d);
         String xq=getWeekOfDate(d);
         db.execSQL("insert into week values(?,?,?)",new String[]{xq,rq,zc});
+
+        //发送广播更新widget
+        SendWidgetRefresh.widgetRefresh(AddCourseActivity.this);
     }
 
     private Handler handle = new Handler() {

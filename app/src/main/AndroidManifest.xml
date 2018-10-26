@@ -32,6 +32,7 @@
         <activity android:name=".SchoolCard.SchoolCardActivity" />
         <activity android:name=".MainUi.SocreActivity" />
         <activity android:name=".AuditClass.AuditActivity" />
+        <activity android:name=".WebViewDlg.SayLoveWallActivity" />
 
         <receiver
             android:name=".WidgetSmall.MyCourseWidgetSmall"
@@ -79,7 +80,25 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".WebViewDlg.SayLoveWallActivity"></activity>
+        <receiver android:name=".WidgetNotice.MyCourseWidgetNotice">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/course_notice_info" />
+        </receiver>
+
+        <service
+            android:name=".WidgetNotice.MyRemoteViewsServiceNotice"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service
+            android:name=".WidgetNotice.MyServiceNotice"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -1,7 +1,9 @@
 package com.imstuding.www.handwyu.AddCourse;
 
 import android.app.Fragment;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,10 +18,13 @@ import android.widget.Toast;
 
 import com.imstuding.www.handwyu.R;
 import com.imstuding.www.handwyu.ToolUtil.DatabaseHelper;
+import com.imstuding.www.handwyu.WidgetBig.MyCourseWidgetBig;
+import com.imstuding.www.handwyu.WidgetSmall.MyCourseWidgetSmall;
 
 import static com.imstuding.www.handwyu.MainUi.TableFragment.static_term;
 import static com.imstuding.www.handwyu.MainUi.TableFragment.static_zc;
 import static com.imstuding.www.handwyu.ToolUtil.DatabaseHelper.db_version;
+import static com.imstuding.www.handwyu.WidgetSmall.MyCourseWidgetSmall.WIDGET_UPDATE;
 
 /**
  * Created by yangkui on 2018/4/11.
@@ -69,10 +74,13 @@ public class AddCourseFragment extends Fragment {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isFilled())
+                if (isFilled()){
                     insertInToDataBase();
-                else
-                    Toast.makeText(mcontext,"请填写完整！",Toast.LENGTH_SHORT).show();
+                    //发送广播更新widget
+                    SendWidgetRefresh.widgetRefresh(mcontext);
+                } else {
+                    Toast.makeText(mcontext, "请填写完整！", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {

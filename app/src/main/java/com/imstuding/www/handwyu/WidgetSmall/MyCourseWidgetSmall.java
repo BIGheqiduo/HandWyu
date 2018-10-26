@@ -6,16 +6,29 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.imstuding.www.handwyu.R;
+import com.imstuding.www.handwyu.ToolUtil.DatabaseHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.imstuding.www.handwyu.MainUi.TableFragment.getDaySub;
+import static com.imstuding.www.handwyu.ToolUtil.DatabaseHelper.db_version;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class MyCourseWidgetSmall extends AppWidgetProvider {
-
+    final int[]  w_z={R.id.w_qi,R.id.w_yi,R.id.w_er,R.id.w_san,R.id.w_si,R.id.w_wu,R.id.w_liu};
+    public static final String WIDGET_UPDATE="com.imstuding.www.handwyu.Widget.action.WIDGET_UPDATE";
     public static final String CHANGE_IMAGE = "com.imstuding.www.handwyu.Widget.action.CHANGE_IMAGE";
     private Intent startUpdateIntent=null;
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -93,12 +106,79 @@ public class MyCourseWidgetSmall extends AppWidgetProvider {
            // Toast.makeText(context,"锁屏" , Toast.LENGTH_SHORT).show();
         }else if (action.equals(Intent.ACTION_USER_PRESENT)){
            // Toast.makeText(context,"解锁" , Toast.LENGTH_SHORT).show();
-        }else {
-
+        }else if (action.equals(WIDGET_UPDATE)){
+            Toast.makeText(context,"刷新small" , Toast.LENGTH_SHORT).show();
+            reFresh(context);
         }
         super.onReceive(context, intent);
     }
 
+    private void reFresh(Context context){
+        final AppWidgetManager mgr = AppWidgetManager.getInstance(context);
+        final ComponentName cn = new ComponentName(context,MyCourseWidgetSmall.class);
+        final RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.my_course_widget_small);
+        Date d = new Date();
+        // 这句话会调用RemoteViewSerivce中RemoteViewsFactory的onDataSetChanged()方法。
+        mgr.notifyAppWidgetViewDataChanged(mgr.getAppWidgetIds(cn),
+                R.id.w_courceDetail_small);
+        views.setTextViewText(R.id.w_text_zc_small,"第"+getWeek(d,context)+"周");
+        for (int i=0;i<7;i++){
+            int j=getWeekOfDate(d);
+            if (i==j)
+                views.setTextColor(w_z[i], Color.RED);
+            else
+                views.setTextColor(w_z[i], Color.WHITE);
+        }
+
+        AppWidgetManager awm = AppWidgetManager.getInstance(context);
+        awm.updateAppWidget(cn, views);
+
+    }
+
+    public int getWeekOfDate(Date date) {
+        int[] weekDays = { 0, 1, 2, 3, 4, 5, 6 };
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        if (w < 0)
+            w = 0;
+        return weekDays[w];
+    }
+
+    public String getWeek(Date d,Context context){
+        DatabaseHelper dbhelp=new DatabaseHelper(context,"course.db",null,db_version);
+        SQLiteDatabase db=dbhelp.getReadableDatabase();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String n_rq=sdf.format(d);
+        String xq=null;
+        String o_rq=null;
+        String zc=null;
+        try{
+            Cursor cursor= db.rawQuery("select * from week",null);
+            while (cursor.moveToNext()){
+                xq = cursor.getString(0);
+                o_rq = cursor.getString(1);
+                zc = cursor.getString(2);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        long countDay=getDaySub(o_rq,n_rq);
+        int countweek= (int) (countDay/7);
+        int extreeday=(int)(countDay%7);
+        int i_zc=Integer.parseInt(zc);
+        int i_xq=Integer.parseInt(xq)%7;
+        if (i_xq+extreeday>6){
+            i_zc = i_zc+countweek;
+            i_zc++;
+        }else {
+            i_zc = i_zc+countweek;
+        }
+
+        return i_zc+"";
+    }
 
 }
 

@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.imstuding.www.handwyu.AddCourse.SendWidgetRefresh;
 import com.imstuding.www.handwyu.CourseDetailUi.CourseDetailDlg;
 import com.imstuding.www.handwyu.LoadDlgUi.MyLoadDlg;
 import com.imstuding.www.handwyu.MainUi.MainActivity;
@@ -337,6 +338,10 @@ public class AuditActivity extends AppCompatActivity {
                     }
                 }
                 //把数据发送出去
+                if (flag){
+                    //刷新小部件窗体
+                    SendWidgetRefresh.widgetRefresh(AuditActivity.this);
+                }
                 bundle.putInt("count",count);
                 message.setData(bundle);
                 message.what=1023;
@@ -476,6 +481,7 @@ public class AuditActivity extends AppCompatActivity {
 
                     AuditClassThread classThread=new AuditClassThread(true);
                     classThread.start();
+
 
                     break;
                 }
