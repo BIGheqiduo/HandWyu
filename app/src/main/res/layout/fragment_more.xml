@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <LinearLayout
         android:id="@+id/layout_help"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/home_shape"
         android:clickable="true">
 
@@ -31,7 +38,7 @@
         android:id="@+id/layout_about"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/home_shape"
         android:clickable="true">
 
@@ -80,10 +87,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/layout_pay"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:background="@drawable/home_shape"
         android:clickable="true">
 
@@ -132,12 +139,12 @@
     </LinearLayout>
 
     <LinearLayout
-    android:id="@+id/layout_bug"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/home_shape"
-    android:clickable="true">
+        android:layout_marginTop="10dp"
+        android:id="@+id/layout_bug"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/home_shape"
+        android:clickable="true">
 
     <ImageView
         android:layout_width="30dp"
@@ -217,4 +224,5 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

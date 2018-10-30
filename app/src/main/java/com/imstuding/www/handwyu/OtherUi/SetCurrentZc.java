@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 import static com.imstuding.www.handwyu.MainUi.TableFragment.getWeekOfDate;
+import static com.imstuding.www.handwyu.MainUi.TableFragment.static_zc;
 import static com.imstuding.www.handwyu.ToolUtil.DatabaseHelper.db_version;
 
 /**
@@ -85,6 +86,8 @@ public class SetCurrentZc {
                 s_zc=s_zc.substring(1,s_zc.length()-1);
                 String xq=getWeekOfDate(d);
                 db.execSQL("insert into week values(?,?,?)",new String[]{xq,rq,s_zc});
+                //更新当前周
+                static_zc=Integer.parseInt(s_zc);
                 Toast.makeText(mcontext,"已成功设置 第"+s_zc+"周 为当前周",Toast.LENGTH_SHORT).show();
                 alertDialog.dismiss();
             }

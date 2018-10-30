@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="#EBEBEB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp">
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/waring_title"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="警告！"
+                android:textColor="#FF0000"
+                android:textSize="10pt" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <View
+        android:background="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp">
+
+    </View>
+
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="是否删除数据库?"
+        android:textColor="#000000"
+        android:id="@+id/wheather_kcmc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/wheather_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/green_track"
+            android:text="取消" />
+
+        <Button
+            android:id="@+id/wheather_yes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/green_track"
+            android:text="确定" />
+    </LinearLayout>
+
+
+</LinearLayout>

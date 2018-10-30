@@ -46,6 +46,7 @@ import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
 import static com.imstuding.www.handwyu.MainUi.TableFragment.getWeekOfDate;
+import static com.imstuding.www.handwyu.MainUi.TableFragment.static_zc;
 import static com.imstuding.www.handwyu.ToolUtil.DatabaseHelper.db_version;
 import static com.imstuding.www.handwyu.WidgetSmall.MyCourseWidgetSmall.WIDGET_UPDATE;
 
@@ -314,7 +315,8 @@ public class AddCourseActivity extends AppCompatActivity {
         String rq=sdf.format(d);
         String xq=getWeekOfDate(d);
         db.execSQL("insert into week values(?,?,?)",new String[]{xq,rq,zc});
-
+        //更新当前周
+        static_zc=Integer.parseInt(zc);
         //发送广播更新widget
         SendWidgetRefresh.widgetRefresh(AddCourseActivity.this);
     }

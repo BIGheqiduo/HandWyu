@@ -12,8 +12,10 @@ public class Course {
     private String js;//星期几第几节
     private String jxbmc;//教学班级
     private String sknrjj;//上课内容
+    private String jcdm;
+    private String xq;
 
-    public Course(String kcmc, String jxcdmc, String teaxms, String zc, String js,String jxbmc,String sknrjj) {
+    public Course(String kcmc, String jxcdmc, String teaxms, String zc, String js,String jxbmc,String sknrjj,String jcdm,String xq) {
         this.kcmc = kcmc;
         this.jxcdmc = jxcdmc;
         this.teaxms = teaxms;
@@ -21,6 +23,24 @@ public class Course {
         this.js = js;
         this.jxbmc=jxbmc;
         this.sknrjj=sknrjj;
+        this.jcdm=jcdm;
+        this.xq=xq;
+    }
+
+    public String getXq() {
+        return xq;
+    }
+
+    public void setXq(String xq) {
+        this.xq = xq;
+    }
+
+    public String getJcdm() {
+        return jcdm;
+    }
+
+    public void setJcdm(String jcdm) {
+        this.jcdm = jcdm;
     }
 
     public String getJxbmc() {

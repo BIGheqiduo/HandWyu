@@ -44,6 +44,7 @@ public class OtherActivity extends AppCompatActivity {
     private WyuNoticeFragment wyuNoticeFragment=null;
     private ReadNoticeFragment readNoticeFragment=null;
     private RetrievePwdFragment retrievePwdFragment=null;
+    private AutoNoticeFragment autoNoticeFragment=null;
     private String msg="exam";
     public TitleView titleView;
     public ImageView imageView_menu;
@@ -217,6 +218,13 @@ public class OtherActivity extends AppCompatActivity {
                 imageView_menu.setVisibility(View.INVISIBLE);
                 retrievePwdFragment=new RetrievePwdFragment();
                 setFragment(retrievePwdFragment);
+                break;
+            }
+            case "AutoNotice":{
+                titleView.setTitleText("上课提醒");
+                imageView_menu.setVisibility(View.INVISIBLE);
+                autoNoticeFragment=new AutoNoticeFragment();
+                setFragment(autoNoticeFragment);
                 break;
             }
         }

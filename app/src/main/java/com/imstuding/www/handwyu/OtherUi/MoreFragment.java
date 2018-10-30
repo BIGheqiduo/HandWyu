@@ -38,6 +38,7 @@ public class MoreFragment extends Fragment {
     private LinearLayout layout_auto_update;
     private Switch auto_update_switch;
     private boolean autoUpdate;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class MoreFragment extends Fragment {
     }
 
     public void initFragment(View view){
+
         auto_update_switch= (Switch) view.findViewById(R.id.auto_update_switch);
         layout_auto_update=(LinearLayout) view.findViewById(R.id.layout_auto_update);
         layout_help= (LinearLayout) view.findViewById(R.id.layout_help);
@@ -69,6 +71,8 @@ public class MoreFragment extends Fragment {
             auto_update_switch.setChecked(false);
         }
 
+
+
         layout_help.setOnClickListener(new MyClickListener());
         layout_about.setOnClickListener(new MyClickListener());
         layout_bug.setOnClickListener(new MyClickListener());
@@ -77,6 +81,9 @@ public class MoreFragment extends Fragment {
         layout_redpaper.setOnClickListener(new MyClickListener());
         layout_update_explain.setOnClickListener(new MyClickListener());
         layout_auto_update.setOnClickListener(new MyClickListener());
+
+
+
     }
 
     public void hideRedPaper(){
@@ -143,10 +150,9 @@ public class MoreFragment extends Fragment {
                         mcontext.getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putBoolean("autoUpdate",true).commit();
                         auto_update_switch.setChecked(true);
                     }
-
                     break;
                 }
-        }
+            }
         }
     }
 }

@@ -47,22 +47,24 @@ public class NoticeUtil {
     }
 
     public void Notice(int count){
-       /* Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
-        NoticeUtil noticeUtil=new NoticeUtil(context);
-        noticeUtil.sendNotice("上课提醒","今天有课上哦，不要错过了","今天有"+c.get(Calendar.HOUR_OF_DAY)+"门课");
-        */
-        Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
-        if (getDayFlag()){
-            if (c.get(Calendar.HOUR_OF_DAY)>=7){
-                setDayFlag(false);
-                NoticeUtil noticeUtil=new NoticeUtil(context);
-                noticeUtil.sendNotice("上课提醒","今天有课上哦，不要错过了，今天有"+count+"门课。","今天有"+count+"门课");
-            }
-        }else {
-            if (c.get(Calendar.HOUR_OF_DAY)<7){
+       //判断是否开启了上课提醒
+        int hour= context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getInt("autoNoticeHour",7);
+        int minute = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getInt("autoNoticeMinute",30);
+        minute-=15;//由于时间不准确，所以减15分钟
+        int t_hour=(hour+3);
+       if (getNoticeFlag()){
+            Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
+            if (getDayFlag()){
+                int d_hour=c.get(Calendar.HOUR_OF_DAY);
+                if (d_hour>=hour&&c.get(Calendar.MINUTE)>=minute&&d_hour<=t_hour){
+                    setDayFlag(false);
+                    NoticeUtil noticeUtil=new NoticeUtil(context);
+                    noticeUtil.sendNotice("上课提醒","今天有课上哦，不要错过了，今天有"+count+"门课。","今天有"+count+"门课");
+                }
+            }else {
                 setDayFlag(true);
             }
-        }
+       }
     }
 
     private void setDayFlag(boolean flag){
@@ -71,6 +73,9 @@ public class NoticeUtil {
 
     private boolean getDayFlag(){
        return context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getBoolean("dayFlag",true);
+    }
+    private boolean getNoticeFlag(){
+        return context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getBoolean("autoNotice",true);
     }
 
 }

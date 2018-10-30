@@ -107,7 +107,7 @@ public class MyCourseWidgetSmall extends AppWidgetProvider {
         }else if (action.equals(Intent.ACTION_USER_PRESENT)){
            // Toast.makeText(context,"解锁" , Toast.LENGTH_SHORT).show();
         }else if (action.equals(WIDGET_UPDATE)){
-            Toast.makeText(context,"刷新small" , Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"刷新small" , Toast.LENGTH_SHORT).show();
             reFresh(context);
         }
         super.onReceive(context, intent);

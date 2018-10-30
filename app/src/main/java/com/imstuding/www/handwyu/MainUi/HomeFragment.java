@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
     private LinearLayout layout_intranet=null;
     private LinearLayout layout_second_simple=null;
     private LinearLayout layout_logout=null;
-    private LinearLayout layout_exam=null;
+    private LinearLayout layout_notice_widget=null;
     private LinearLayout layout_more=null;
     private LinearLayout layout_shool_date=null;
     private LinearLayout layout_classmate=null;
@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment {
         layout_more.setOnClickListener(myClickListener);
         layout_update= (LinearLayout) view.findViewById(R.id.layout_update);
         layout_update.setOnClickListener(myClickListener);
-        layout_exam= (LinearLayout) view.findViewById(R.id.layout_exam);
+        layout_notice_widget= (LinearLayout) view.findViewById(R.id.layout_notice_widget);
         layout_dic= (LinearLayout) view.findViewById(R.id.layout_dic);
         layout_second_simple= (LinearLayout) view.findViewById(R.id.layout_second_simple);
         layout_intranet= (LinearLayout) view.findViewById(R.id.layout_intranet);
@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
         layout_second_simple.setOnClickListener(myClickListener);
         layout_dic.setOnClickListener(myClickListener);
         layout_intranet.setOnClickListener(myClickListener);
-        layout_exam.setOnClickListener(myClickListener);
+        layout_notice_widget.setOnClickListener(myClickListener);
 
         reFresh();
     }
@@ -256,21 +256,11 @@ public class HomeFragment extends Fragment {
                     startActivity(intent);
                     break;
                 }
-                case R.id.layout_exam:{
-                    if (MainActivity.isLogin()){
-                        Intent intent=new Intent();
-                        intent.setClass(mcontext,OtherActivity.class);
-                        intent.putExtra("msg","exam");
-                        startActivity(intent);
-                    }else {
-                        //手动设置一下
-                        MainActivity.setLogin(false);
-                        Toast.makeText(mcontext,"请先登录",Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent();
-                        intent.setClass(mcontext,LoginActivity.class);
-                        startActivity(intent);
-
-                    }
+                case R.id.layout_notice_widget:{
+                    Intent intent=new Intent();
+                    intent.setClass(mcontext,OtherActivity.class);
+                    intent.putExtra("msg","AutoNotice");
+                    startActivity(intent);
                     break;
                 }
                 case R.id.layout_second_simple:{

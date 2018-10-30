@@ -239,7 +239,7 @@ public class Notice_Fragment extends Fragment {
                 String sknrjj= cursor.getString(8);
                 String js="星期"+xq+"，"+"第"+jcdm+"小节";
 
-                Course course=new Course(kcmc,jxcdmc,teaxms,zc,js,jxbmc,sknrjj);
+                Course course=new Course(kcmc,jxcdmc,teaxms,zc,js,jxbmc,sknrjj,jcdm,xq);
                 courseList.add(count,course);
 
                 Map<String,String> map=new HashMap<String, String>();

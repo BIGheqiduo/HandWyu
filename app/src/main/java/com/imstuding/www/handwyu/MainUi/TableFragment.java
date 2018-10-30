@@ -2,8 +2,10 @@ package com.imstuding.www.handwyu.MainUi;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -84,6 +86,9 @@ public class TableFragment extends Fragment {
     private int minVelocity         = 0;
     private int slid_zc=0;
     private MyTouchListener myTouchListener;
+    final public static String DEL_UPDATE_DLG="com.handwyu.www.DEL_UPDATE_DLG";
+    final public static String DEL_UPDATE_TABLE="com.handwyu.www.DEL_UPDATE_TABLE";
+    private DelCourseBroadcastReceiver mbcr;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -98,9 +103,16 @@ public class TableFragment extends Fragment {
 
         weekTitle.setOnTouchListener(myTouchListener);
         weekTitle.setLongClickable(true);
+
+        regsterDelBroadcast();
         return view;
     }
 
+    @Override
+    public void onDestroy() {
+        unRegsterDelBroadcast();
+        super.onDestroy();
+    }
 
     class MyTouchListener implements View.OnTouchListener, GestureDetector.OnGestureListener{
 
@@ -266,7 +278,7 @@ public class TableFragment extends Fragment {
     private void initFragment(){
         myPopMenu();//设置popmenu
         myTouchListener=new MyTouchListener();
-        slid_zc=m_zc;
+        slid_zc=static_zc;
 
         titleView = (MainTitle)view.findViewById(R.id.title_table);
         imageView_menu= (ImageView) view.findViewById(R.id.main_title_menu);
@@ -722,4 +734,32 @@ public class TableFragment extends Fragment {
         static_term=year;
         return year;
     }
+
+
+    class DelCourseBroadcastReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Toast.makeText(mContext,"666",Toast.LENGTH_SHORT).show();
+            int zc= intent.getIntExtra("zc",-1);
+            if (zc==-1){
+                zc=static_zc;
+                Toast.makeText(mContext,"666",Toast.LENGTH_SHORT).show();
+            }
+            setTableCourse(zc+"");
+            //initFragment();
+        }
+    }
+
+    private void regsterDelBroadcast(){
+        mbcr = new DelCourseBroadcastReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(DEL_UPDATE_TABLE);
+        mContext.registerReceiver(mbcr, filter);// 注册
+    }
+
+    private void unRegsterDelBroadcast(){
+        mContext.unregisterReceiver(mbcr);
+        mbcr = null;
+    }
+
 }

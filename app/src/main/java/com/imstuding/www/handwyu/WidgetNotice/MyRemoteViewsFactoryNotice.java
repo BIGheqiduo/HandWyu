@@ -127,7 +127,7 @@ public class MyRemoteViewsFactoryNotice implements RemoteViewsService.RemoteView
                 String sknrjj= cursor.getString(8);
                 String js=jcdm;
 
-                Course course=new Course(kcmc,jxcdmc,teaxms,zc,js,jxbmc,sknrjj);
+                Course course=new Course(kcmc,jxcdmc,teaxms,zc,js,jxbmc,sknrjj,jcdm,xq);
                 courseList.add(count,course);
 
                 Map<String,String> map=new HashMap<String, String>();

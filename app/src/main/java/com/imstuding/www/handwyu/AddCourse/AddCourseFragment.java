@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -42,8 +43,8 @@ public class AddCourseFragment extends Fragment {
     private EditText e_teaxms;
     private Spinner spinner_xq;
     private Spinner spinner_js;
-    private Spinner spinner_start;
-    private Spinner spinner_end;
+    private GridView zc_gridview;
+    private MySelectZcAdapter mySelectZcAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -66,16 +67,25 @@ public class AddCourseFragment extends Fragment {
         e_teaxms= (EditText) view.findViewById(R.id.fragment_add_teaxms);
         spinner_xq= (Spinner) view.findViewById(R.id.fragment_add_spinner_xq);
         spinner_js= (Spinner) view.findViewById(R.id.fragment_add_spinner_js);
-        spinner_start= (Spinner) view.findViewById(R.id.fragment_add_spinner_start);
-        spinner_end= (Spinner) view.findViewById(R.id.fragment_add_spinner_end);
         btn_cancel= (Button) view.findViewById(R.id.fragment_add_cancel);
         btn_submit= (Button) view.findViewById(R.id.fragment_add_submit);
+
+        zc_gridview= (GridView) view.findViewById(R.id.fragment_add_gridview_zc);
+        mySelectZcAdapter=new MySelectZcAdapter(mcontext);
+        String content[]=new String[20];
+        for (int i=0;i<20;i++){
+            content[i]=(i+1)+"";
+        }
+        mySelectZcAdapter.setContent(content,4,5);
+        zc_gridview.setAdapter(mySelectZcAdapter);
+
         initView();
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isFilled()){
-                    insertInToDataBase();
+
+                    insertInToDataBase(mySelectZcAdapter.getArray());
                     //发送广播更新widget
                     SendWidgetRefresh.widgetRefresh(mcontext);
                 } else {
@@ -95,24 +105,29 @@ public class AddCourseFragment extends Fragment {
     public boolean isFilled(){
         String kcmc=e_kcmc.getText().toString();
         String jxcdmc=e_jxcdmc.getText().toString();
+        String tarray[]= mySelectZcAdapter.getArray();
 
         if (kcmc.isEmpty()||jxcdmc.isEmpty())
             return false;
-        return true;
+
+        boolean flag=false;
+        for (int i=0;i<20;i++){
+            if (!tarray[i].equals("")){
+                flag=true;
+                break;
+            }
+        }
+        return flag;
     }
 
     //设置节和星期
     public void initView(){
         spinner_js.setSelection(js);
         spinner_xq.setSelection(xq);
-        spinner_start.setSelection(static_zc-1);
-        spinner_end.setSelection(static_zc-1);
     }
 
-    public void insertInToDataBase(){
+    public void insertInToDataBase(String array[]){
         int xq=getXq();
-        int zc_s=getStartZc();
-        int zc_e=getEndZc();
         String js=getJs();
         String kcmc=e_kcmc.getText().toString();
         String jxcdmc=e_jxcdmc.getText().toString();
@@ -121,13 +136,15 @@ public class AddCourseFragment extends Fragment {
             teaxms="unknow";
         DatabaseHelper dbhelp=new DatabaseHelper(mcontext,"course.db",null,db_version);
         SQLiteDatabase db=dbhelp.getWritableDatabase();
-        for (int i=zc_s;i<=zc_e;i++){
-            try{
-                db.execSQL("insert into course values(?,?,?,?,?,?,?,?,?)",new String[]{jxcdmc,teaxms,xq+"",js,kcmc,i+"",static_term,"unknow","unknow"});
-            }catch (Exception e){
-                e.printStackTrace();
-                Toast.makeText(mcontext,"操作失败！",Toast.LENGTH_SHORT).show();
-                return;
+        for (int i=0;i<20;i++){
+            if (!array[i].equals("")){
+                try{
+                    db.execSQL("insert into course values(?,?,?,?,?,?,?,?,?)",new String[]{jxcdmc,teaxms,xq+"",js,kcmc,array[i],static_term,"unknow","unknow"});
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(mcontext,"操作失败！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         }
         Toast.makeText(mcontext,"操作成功啦！",Toast.LENGTH_SHORT).show();
@@ -168,22 +185,6 @@ public class AddCourseFragment extends Fragment {
             }
         }
         return xq;
-    }
-
-    public int getStartZc(){
-        int zc=0;
-        String string= spinner_start.getSelectedItem().toString();
-        string = string.substring(1,string.length()-1);
-        zc=Integer.parseInt(string);
-        return zc;
-    }
-
-    public int getEndZc(){
-        int zc=0;
-        String string= spinner_end.getSelectedItem().toString();
-        string = string.substring(1,string.length()-1);
-        zc=Integer.parseInt(string);
-        return zc;
     }
 
     public String getJs(){

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.imstuding.www.handwyu.CourseDetailUi.CourseDetailDlg;
 import com.imstuding.www.handwyu.CourseDetailUi.CourseList;
+import com.imstuding.www.handwyu.CourseDetailUi.DelCourseDlg;
 import com.imstuding.www.handwyu.OtherUi.OtherActivity;
 import com.imstuding.www.handwyu.R;
 import com.imstuding.www.handwyu.ToolUtil.Course;
@@ -63,7 +64,7 @@ public class AbsGridAdapter extends BaseAdapter {
         if( convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.grib_item, null);
         }
-        TextView textView = (TextView)convertView.findViewById(R.id.text);
+        final TextView textView = (TextView)convertView.findViewById(R.id.text);
         //如果有课,那么添加数据
         if( !getItem(position).equals("")) {
             textView.setText((String)getItem(position));
@@ -119,6 +120,19 @@ public class AbsGridAdapter extends BaseAdapter {
             }
         });
 
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (textView.getText().toString().equals("")){
+
+                }else {
+                    DelCourseDlg delCourseDlg=new DelCourseDlg(mContext,subStringToArray(contents[position / columnTotal][position % columnTotal]));
+                    delCourseDlg.show();
+                }
+                return false;
+            }
+        });
+
         return convertView;
     }
 
@@ -142,7 +156,7 @@ public class AbsGridAdapter extends BaseAdapter {
                 array[6]="暂时没有内容！";
             }
 
-            Course course=new Course(array[0],array[1],array[4],array[3],array[2],array[5],array[6]);
+            Course course=new Course(array[0],array[1],array[4],array[3],array[2],array[5],array[6],tarray[3],tarray[2]);
             courseList.add(i,course);
         }
 

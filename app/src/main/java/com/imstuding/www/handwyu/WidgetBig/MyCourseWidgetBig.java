@@ -112,7 +112,7 @@ public class MyCourseWidgetBig extends AppWidgetProvider {
         }else if (action.equals(Intent.ACTION_SHUTDOWN)){
             // Toast.makeText(context,"关机" , Toast.LENGTH_SHORT).show();
         }else if (action.equals(WIDGET_UPDATE)){
-            Toast.makeText(context,"刷新big" , Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,"刷新big" , Toast.LENGTH_SHORT).show();
             reFresh(context);
         }
         super.onReceive(context, intent);

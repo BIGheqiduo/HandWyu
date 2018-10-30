@@ -257,7 +257,7 @@ public class AuditSearchDlg {
                         String sknrjj= retobject.getString("sknrjj");
                         String js="星期"+xq+"，"+"第"+jcdm+"小节";
 
-                        Course course=new Course(kcmc,jxcdmc,teaxms,zc,js,jxbmc,sknrjj);
+                        Course course=new Course(kcmc,jxcdmc,teaxms,zc,js,jxbmc,sknrjj,jcdm,xq);
                         courseList.add(i,course);
                         count++;
                     }

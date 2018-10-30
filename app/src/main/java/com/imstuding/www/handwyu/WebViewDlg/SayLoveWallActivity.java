@@ -218,15 +218,15 @@ public class SayLoveWallActivity extends AppCompatActivity implements ViewTreeOb
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             long secondTime = System.currentTimeMillis();
-            if (secondTime - firstTime >= 2000) {
-                if (webView.canGoBack()) {
-                    webView.goBack();
-                }else {
+            if (webView.canGoBack()){
+                webView.goBack();
+            }else {
+                if (secondTime - firstTime >= 2000) {
                     Toast.makeText(SayLoveWallActivity.this, "请再按一次退出邑大表白哦", Toast.LENGTH_SHORT).show();
+                    firstTime = secondTime;
+                } else {
+                    return super.onKeyDown(keyCode, event);
                 }
-                firstTime = secondTime;
-            } else {
-                return super.onKeyDown(keyCode, event);
             }
             return false;
         }else {

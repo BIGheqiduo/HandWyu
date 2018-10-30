@@ -107,7 +107,7 @@
             android:background="#EBEBEB" />
 
         <LinearLayout
-            android:id="@+id/layout_exam"
+            android:id="@+id/layout_notice_widget"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/home_shape"
@@ -117,14 +117,14 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:background="@drawable/examplan" />
+                android:background="@drawable/notice_widget" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
-                android:text="考试安排"
+                android:text="上课提醒"
                 android:textColor="#000000"
                 android:textSize="15dp" />
         </LinearLayout>

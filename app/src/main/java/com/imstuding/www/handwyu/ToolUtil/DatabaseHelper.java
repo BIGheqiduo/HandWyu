@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static com.imstuding.www.handwyu.MainUi.TableFragment.getWeekOfDate;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     //每改一次数据库增加一
@@ -49,6 +54,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "content text," +    //通知的内容
                 "time text," +       //时间
                 "flag text)");       //是否已读
+
+        //设置当前周
+        iniTZc(db);
+    }
+
+    //初始化周次
+    private void iniTZc(SQLiteDatabase db){
+        Date d = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String rq=sdf.format(d);
+        String xq=getWeekOfDate(d);
+        db.execSQL("insert into week values(?,?,?)",new String[]{xq,rq,"1"});
     }
 
     @Override
