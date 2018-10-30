@@ -9,7 +9,9 @@ import android.content.Intent;
 import com.imstuding.www.handwyu.MainUi.MainActivity;
 import com.imstuding.www.handwyu.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -51,30 +53,30 @@ public class NoticeUtil {
         int hour= context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getInt("autoNoticeHour",7);
         int minute = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getInt("autoNoticeMinute",30);
         minute-=15;//由于时间不准确，所以减15分钟
-        int t_hour=(hour+3);
-       if (getNoticeFlag()){
+        //int t_hour=(hour+3);
+        Date date=new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
+        String s_flag=sdf.format(date);
+
+        if (getNoticeFlag()){
             Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
-            if (getDayFlag()){
+            if (!s_flag.equals(getDayFlag())){
                 int d_hour=c.get(Calendar.HOUR_OF_DAY);
-                if (d_hour>=hour&&c.get(Calendar.MINUTE)>=minute&&d_hour<=t_hour){
-                    setDayFlag(false);
+                if (d_hour>=hour&&c.get(Calendar.MINUTE)>=minute){
+                    setDayFlag(s_flag);
                     NoticeUtil noticeUtil=new NoticeUtil(context);
                     noticeUtil.sendNotice("上课提醒","今天有课上哦，不要错过了，今天有"+count+"门课。","今天有"+count+"门课");
-                }
-            }else {
-                if (c.get(Calendar.HOUR_OF_DAY)>t_hour){
-                    setDayFlag(true);
                 }
             }
        }
     }
 
-    private void setDayFlag(boolean flag){
-        context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putBoolean("dayFlag",flag).commit();
+    private void setDayFlag(String s_flag){
+        context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putString("dayFlag",s_flag).commit();
     }
 
-    private boolean getDayFlag(){
-       return context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getBoolean("dayFlag",true);
+    private String getDayFlag(){
+       return context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("dayFlag","2018年10月29");
     }
     private boolean getNoticeFlag(){
         return context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getBoolean("autoNotice",true);
