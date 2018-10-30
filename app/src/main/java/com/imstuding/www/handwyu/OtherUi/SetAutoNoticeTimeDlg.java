@@ -47,10 +47,16 @@ public class SetAutoNoticeTimeDlg {
             public void onClick(View v) {
                 int hour=auto_notice_timepicker.getCurrentHour();
                 int minute=auto_notice_timepicker.getCurrentMinute();
-                mcontext.getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putInt("autoNoticeHour",hour).commit();
-                mcontext.getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putInt("autoNoticeMinute",minute).commit();
-                Toast.makeText(mcontext,"已设置提醒时间为"+hour+"时"+minute+"分",Toast.LENGTH_SHORT).show();
-                alertDialog.dismiss();
+                if (hour>=6&&hour<=19){
+                    mcontext.getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putInt("autoNoticeHour",hour).commit();
+                    mcontext.getSharedPreferences("userInfo", Context.MODE_PRIVATE).edit().putInt("autoNoticeMinute",minute).commit();
+                    Toast.makeText(mcontext,"已设置提醒时间为"+hour+"时"+minute+"分",Toast.LENGTH_SHORT).show();
+                    alertDialog.dismiss();
+                }else {
+                    Toast.makeText(mcontext,"请设置6-19点的提醒，谢谢配合！",Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 

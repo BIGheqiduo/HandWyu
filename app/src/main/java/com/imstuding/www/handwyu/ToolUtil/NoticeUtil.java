@@ -62,7 +62,9 @@ public class NoticeUtil {
                     noticeUtil.sendNotice("上课提醒","今天有课上哦，不要错过了，今天有"+count+"门课。","今天有"+count+"门课");
                 }
             }else {
-                setDayFlag(true);
+                if (c.get(Calendar.HOUR_OF_DAY)>t_hour){
+                    setDayFlag(true);
+                }
             }
        }
     }
