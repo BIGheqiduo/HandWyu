@@ -9,33 +9,24 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.view.menu.MenuPopupHelper;
-import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.imstuding.www.handwyu.AddCourse.AddCourseActivity;
-import com.imstuding.www.handwyu.AuditClass.AuditActivity;
 import com.imstuding.www.handwyu.LoadDlgUi.MyLoadDlg;
-import com.imstuding.www.handwyu.OtherUi.SetCurrentZc;
 import com.imstuding.www.handwyu.ScoreDetailUi.ScoreDetailDlg;
+import com.imstuding.www.handwyu.ToolUtil.GetScoreByNameDlg;
 import com.imstuding.www.handwyu.ToolUtil.MainFragmentTitle;
+import com.imstuding.www.handwyu.ToolUtil.PoorSubJect;
 import com.imstuding.www.handwyu.WebViewDlg.LoginActivity;
-import com.imstuding.www.handwyu.OtherUi.OtherActivity;
 import com.imstuding.www.handwyu.ToolUtil.MyHttpHelp;
 import com.imstuding.www.handwyu.R;
 import com.imstuding.www.handwyu.ToolAdapter.ScoreAdapter;
@@ -50,7 +41,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -127,6 +117,17 @@ public class ScoreFragment extends Fragment {
                 //Toast.makeText(mcontext,"测试"+subJect.getCjjd(),Toast.LENGTH_SHORT).show();
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                SubJect subJect=(SubJect)parent.getAdapter().getItem(position);
+                GetScoreByNameDlg getScoreByNameDlg=new GetScoreByNameDlg(mcontext,subJect);
+                getScoreByNameDlg.show();
+                return true;
+            }
+        });
+
         spinner=(Spinner)view.findViewById(R.id.spinner_date);
         btn_score.setOnClickListener(myClickListener);
         btn_score_activity.setOnClickListener(myClickListener);
@@ -257,6 +258,7 @@ public class ScoreFragment extends Fragment {
                             cjjd=retobject.getString("cjjd");//绩点
                         }catch (Exception e)
                         {
+                            Toast.makeText(mcontext,"发现你有没有评教的课程，请长按该课程，查看成绩详情！",Toast.LENGTH_SHORT).show();
                             cjjd="**";
                             zcj="**";
                         }

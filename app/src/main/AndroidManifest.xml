@@ -95,10 +95,6 @@
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-        <service
-            android:name=".WidgetNotice.MyServiceNotice"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>

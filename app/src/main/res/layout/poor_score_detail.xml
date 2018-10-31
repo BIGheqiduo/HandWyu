@@ -3,14 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <LinearLayout
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:textColor="#B23AEE"
+            android:textColor="#FF0000"
             android:textSize="12pt"
             android:gravity="center"
             android:layout_gravity="center"
@@ -27,17 +26,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
-        android:text="课程编号"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:text="课程编号"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:layout_weight="1"
-        android:id="@+id/score_detail_kcbh"
-        android:text="0800680"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/score_detail_kcbh"
+            android:text="0800680"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout

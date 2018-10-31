@@ -1,7 +1,12 @@
 package com.imstuding.www.handwyu.AuditClass;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -66,12 +72,15 @@ public class AuditSearchDlg {
     private ListView list_audit=null;
     private SimpleAdapter simpleAdapter=null;
     private MyLoadDlg myLoadDlg=null;
+    private DateBroadcastReceiver mbcr;
+    public static final String DATE_FILL_DLG="com.handwyu.www.DATE_FILL_DLG";
 
     public AuditSearchDlg(Context mcontext,AuditPostData postData,List<Course> courseList,ListView list_audit){
         this.mcontext=mcontext;
         this.postData=postData;
         this.courseList=courseList;
         this.list_audit=list_audit;
+        regsterDelBroadcast();
     }
 
     public void show(){
@@ -84,6 +93,12 @@ public class AuditSearchDlg {
         builder.setCancelable(false);
         alertDialog=builder.create();
         alertDialog.show();
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                unRegsterDelBroadcast();
+            }
+        });
     }
 
     public void initDlg(View view){
@@ -117,6 +132,8 @@ public class AuditSearchDlg {
         postData.setXnxqdm(xnxqdm);
         postData.setJhlxdm("00");
         postData.setKkyxdm("全部");
+
+        editText_rq.setOnClickListener(new MyClickListener());
     }
 
     class MyItemSelectedListener implements AdapterView.OnItemSelectedListener{
@@ -161,6 +178,7 @@ public class AuditSearchDlg {
                     courseList.clear();
                     postData.setPage("1");
                     postData.setKcdm("");
+
                     String t_rq=editText_rq.getText().toString();
                     if (!t_rq.isEmpty()&&!t_rq.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")){
                         myLoadDlg.dismiss();
@@ -178,6 +196,11 @@ public class AuditSearchDlg {
                         kcdmThread.start();
                     }
                     //Toast.makeText(mcontext,postData.getXnxqdm()+postData.getJhlxdm()+postData.getKkyxdm(),Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case R.id.audit_edit_rq:{
+                    MyDatePickerDialog myDatePickerDialog=new MyDatePickerDialog(mcontext);
+                    myDatePickerDialog.show();
                     break;
                 }
             }
@@ -421,4 +444,29 @@ public class AuditSearchDlg {
             }
         }
     };
+
+    class DateBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String date_string = intent.getStringExtra("date");
+            if (date_string==null){
+                Toast.makeText(mcontext,"有问题，错误代码0x02，但是问题不是很严重，去反馈一下吧！",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            //Toast.makeText(mcontext,date_string,Toast.LENGTH_SHORT).show();
+            editText_rq.setText(date_string);
+        }
+    }
+
+    private void regsterDelBroadcast(){
+        mbcr=new DateBroadcastReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(DATE_FILL_DLG);
+        mcontext.registerReceiver(mbcr, filter);// 注册
+    }
+
+    private void unRegsterDelBroadcast(){
+        mcontext.unregisterReceiver(mbcr);
+        mbcr = null;
+    }
 }

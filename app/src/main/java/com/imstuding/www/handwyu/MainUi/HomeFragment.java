@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import com.imstuding.www.handwyu.Dictionaty.DictionaryActivity;
 import com.imstuding.www.handwyu.ToolUtil.MainFragmentTitle;
-import com.imstuding.www.handwyu.ToolUtil.TitleView;
 import com.imstuding.www.handwyu.WebViewDlg.LoginActivity;
 import com.imstuding.www.handwyu.ToolUtil.MyHttpHelp;
 import com.imstuding.www.handwyu.OtherUi.OtherActivity;
@@ -39,7 +37,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
-import static com.imstuding.www.handwyu.OtherUi.SplashActivity.isAutoUpdate;
 import static com.imstuding.www.handwyu.OtherUi.SplashActivity.isShowUpdate;
 
 /**

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -75,7 +80,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <EditText
-            android:hint="如：2018-09-22(不要省略0了哦)"
+            android:editable="false"
+            android:hint="点击会弹出选择日期对话框"
             android:id="@+id/audit_edit_rq"
             android:singleLine="true"
             android:background="@drawable/shape_edit"
@@ -179,5 +185,6 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
-
 </LinearLayout>
+
+</ScrollView>
