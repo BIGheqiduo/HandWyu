@@ -53,7 +53,7 @@ public class NoticeUtil {
         int hour= context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getInt("autoNoticeHour",7);
         int minute = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE).getInt("autoNoticeMinute",30);
         minute-=15;//由于时间不准确，所以减15分钟
-        //int t_hour=(hour+3);
+
         Date date=new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
         String s_flag=sdf.format(date);
@@ -65,7 +65,12 @@ public class NoticeUtil {
                 if (d_hour>=hour&&c.get(Calendar.MINUTE)>=minute){
                     setDayFlag(s_flag);
                     NoticeUtil noticeUtil=new NoticeUtil(context);
-                    noticeUtil.sendNotice("上课提醒","今天有课上哦，不要错过了，今天有"+count+"门课。","今天有"+count+"门课");
+                    if (count==0){
+                        noticeUtil.sendNotice("上课提醒","今天没有课，可以放松一下啦！。","今天没课啦");
+                    }else {
+                        noticeUtil.sendNotice("上课提醒","今天有课上哦，不要错过了，今天有"+count+"门课。","今天有"+count+"门课");
+                    }
+
                 }
             }
        }

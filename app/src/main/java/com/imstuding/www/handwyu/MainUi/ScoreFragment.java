@@ -256,9 +256,11 @@ public class ScoreFragment extends Fragment {
                         try{
                             zcj=retobject.getString("zcj");//总成绩
                             cjjd=retobject.getString("cjjd");//绩点
-                        }catch (Exception e)
-                        {
-                            Toast.makeText(mcontext,"发现你有没有评教的课程，请长按该课程，查看成绩详情！",Toast.LENGTH_SHORT).show();
+                        }catch (Exception e) {
+                            Message msg=new Message();
+                            msg.what=1008;
+                            handle.sendMessage(msg);
+                            //Toast.makeText(mcontext,"发现你有没有评教的课程，请长按该课程，查看成绩详情！",Toast.LENGTH_SHORT).show();
                             cjjd="**";
                             zcj="**";
                         }
@@ -393,6 +395,9 @@ public class ScoreFragment extends Fragment {
                         String xf=array[1];
                         String xdfsmc=array[2];
                         String cjjd=array[3];
+                       /* if (cjjd.equals("**")){
+                            Toast.makeText(mcontext,"发现你有没有评教的课程，请长按该课程，查看成绩详情！",Toast.LENGTH_SHORT).show();
+                        }*/
                         String kcbh=array[4];
                         String zxs=array[5];
                         String cjfsmc=array[6];
@@ -428,6 +433,10 @@ public class ScoreFragment extends Fragment {
                 }
                 case 1007:{
                     Toast.makeText(mcontext,R.string.offline,Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case 1008:{
+                    Toast.makeText(mcontext,"发现你有没有评教的课程，请长按该课程，查看成绩详情！",Toast.LENGTH_SHORT).show();
                     break;
                 }
             }

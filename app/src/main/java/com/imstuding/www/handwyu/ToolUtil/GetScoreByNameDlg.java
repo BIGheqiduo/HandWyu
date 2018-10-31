@@ -9,7 +9,9 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.imstuding.www.handwyu.LoadDlgUi.MyLoadDlg;
 import com.imstuding.www.handwyu.MainUi.MainActivity;
 import com.imstuding.www.handwyu.R;
 
@@ -49,12 +51,16 @@ public class GetScoreByNameDlg extends Thread {
     private TextView T_xdfsmc;//修读方式名称
     private TextView T_cjfsmc;//成绩方式名称
     private TextView T_pscj;//平时成绩
+    private TextView detail_title;//课程详情
     private SubJect subJect;
+    private int count=0;
+    private MyLoadDlg myLoadDlg=null;
     public GetScoreByNameDlg(Context context, SubJect subJect){
         this.mcontext=context;
         this.m_kcmc=subJect.getKcmc();
         this.subJect=subJect;
         this.poorSubJectList=new LinkedList<PoorSubJect>();
+        myLoadDlg=new MyLoadDlg(mcontext);
     }
 
 
@@ -70,10 +76,12 @@ public class GetScoreByNameDlg extends Thread {
         alertDialog.show();
         GetScoreByNameThread getScoreByNameThread=new GetScoreByNameThread();
         getScoreByNameThread.start();
+        myLoadDlg.show();
     }
 
     public void initDlg(View view){
         try{
+            detail_title= (TextView) view.findViewById(R.id.detail_title);
             T_kcbh= (TextView) view.findViewById(R.id.score_detail_kcbh);
             T_kcmc= (TextView) view.findViewById(R.id.score_detail_kcmc);
             T_zcj= (TextView) view.findViewById(R.id.score_detail_zcj);
@@ -127,7 +135,6 @@ public class GetScoreByNameDlg extends Thread {
                     parseJSONWithJSONObject(response);
                 }
             } catch (Exception e) {
-
                 e.printStackTrace();
             }
             super.run();
@@ -244,7 +251,19 @@ public class GetScoreByNameDlg extends Thread {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1024:{
+                    if (poorSubJectList.size()>1){
+                        Toast.makeText(mcontext,"发现有相同名称的课程，请点击标题切换课程！(课程详情)",Toast.LENGTH_SHORT).show();
+                        detail_title.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                count++;
+                                int t=count%poorSubJectList.size();
+                                setDlgData(poorSubJectList.get(t));
+                            }
+                        });
+                    }
                     setDlgData(poorSubJectList.get(0));
+                    myLoadDlg.dismiss();
                     break;
                 }
             }
@@ -254,6 +273,7 @@ public class GetScoreByNameDlg extends Thread {
     private void setDlgData(PoorSubJect poorSubJect){
         T_zcj.setText(poorSubJect.getZcj());
         T_cjjd.setText("**");
+        T_xf.setText(poorSubJect.getXf());
     }
 
 }

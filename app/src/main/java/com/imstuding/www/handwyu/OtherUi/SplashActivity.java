@@ -46,8 +46,7 @@ import com.imstuding.www.handwyu.R;
 import com.imstuding.www.handwyu.ToolUtil.MyHttpHelp;
 import com.imstuding.www.handwyu.ToolUtil.UrlUtil;
 
-public class SplashActivity extends Activity
-{
+public class SplashActivity extends Activity {
     private Handler handler = new Handler();
     private Runnable runnable;
     private Button jump_btn=null;
